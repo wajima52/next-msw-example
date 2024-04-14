@@ -1,6 +1,11 @@
-import {createServer} from "@mswjs/http-middleware";
-import {handlers} from "src/mocks/handlers";
+import {createMiddleware, createServer} from "@mswjs/http-middleware";
+import {handlers} from "@/mocks/handlers";
+import express from "express";
+import cors from "cors";
 
-const httpServer = createServer(...handlers)
+const server = express();
+server.use(cors())
+server.use(express.json())
+server.use(createMiddleware(...handlers))
 
-httpServer.listen(9090)
+server.listen(9090)
