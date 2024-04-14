@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "msw-dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/mocks/mockServer.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -39,6 +40,7 @@
     "eslint-config-next": "14.2.1",
     "express": "^4.19.2",
     "msw": "^2.2.13",
+    "nodemon": "^3.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

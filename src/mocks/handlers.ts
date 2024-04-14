@@ -6,6 +6,9 @@ const todos = [
   },
   {
     name: "洗濯"
+  },
+  {
+    name: "掃除"
   }
 ]
 
