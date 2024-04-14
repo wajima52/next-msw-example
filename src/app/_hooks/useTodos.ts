@@ -11,6 +11,12 @@ const formSchema = z.object({
 export const useTodos = () => {
   const {isPending, isError, data, refetch} = useQuery({queryKey: ["todos"], queryFn: () => fetchTodoList()})
 
+  const todos = data?.todos ?? []
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {name: ""}
+  })
+
   const mutation = useMutation({
     mutationKey: ["create-todo"],
     mutationFn: async (data: z.infer<typeof formSchema>) => await publicFetch("/todo", {
@@ -23,13 +29,8 @@ export const useTodos = () => {
     }),
     onSuccess: async () => {
       await refetch()
+      form.reset()
     }
-  })
-
-  const todos = data?.todos ?? []
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {name: ""}
   })
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => mutation.mutate(data)
