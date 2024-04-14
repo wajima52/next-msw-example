@@ -41,6 +41,7 @@ export const useTodos = () => {
     isPending,
     isError,
     form,
+    isSending: mutation.isPending,
     onSubmit
   }
 }

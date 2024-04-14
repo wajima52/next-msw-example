@@ -1,4 +1,4 @@
-import {http, HttpResponse} from "msw";
+import {delay, http, HttpResponse} from "msw";
 
 const todos = [
   {
@@ -14,6 +14,7 @@ const todos = [
 
 
 export const handlers = [
+  http.all('*', async () => await delay(300)),
   http.get('/todos', () => {
     return HttpResponse.json({
       todos: todos

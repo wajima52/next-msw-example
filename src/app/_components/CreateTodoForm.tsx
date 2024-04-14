@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/button";
 
 
 export default function CreateTodoForm() {
-  const {todos, isPending, isError, form, onSubmit} = useTodos()
+  const {todos, isPending, isError, form, isSending, onSubmit} = useTodos()
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function CreateTodoForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={isPending}>Add Todo</Button>
+          <Button type="submit" disabled={isPending || isSending}>{isSending ? "Adding TODO..." : "Add TODO"}</Button>
         </form>
       </Form>
       {isPending ? (<div>Loading todos...</div>) : todos.length === 0 ? (<div>No todos found</div>) : (
